@@ -4,13 +4,14 @@ package cc.ehan.config;
 import cc.ehan.security.filter.JwtAuthenticationTokenFilter;
 import cc.ehan.security.handler.AuthenticationEntryPointImpl;
 import cc.ehan.security.handler.LogoutSuccessHandlerImpl;
-import cc.ehan.security.provider.AccountAuthenticationProvider;
+import cc.ehan.security.userdetails.AccountUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -36,6 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private LogoutSuccessHandlerImpl logoutSuccessHandler;
 
+    @Autowired
+    private AccountUserDetailsService accountUserDetailsService;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         String encodingId = "bcrypt";
@@ -46,7 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationProvider accountAuthenticationProvider(PasswordEncoder passwordEncoder) {
-        return new AccountAuthenticationProvider(passwordEncoder);
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setPasswordEncoder(passwordEncoder);
+        authenticationProvider.setUserDetailsService(accountUserDetailsService);
+        return authenticationProvider;
     }
 
     /**

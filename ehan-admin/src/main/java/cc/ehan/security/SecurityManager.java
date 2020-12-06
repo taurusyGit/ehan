@@ -1,10 +1,15 @@
 package cc.ehan.security;
 
+import cc.ehan.common.utils.BeanCopyUtils;
 import cc.ehan.security.userdetails.LoginUserDetail;
+import cc.ehan.system.domain.entity.SysUserEntity;
+import cc.ehan.system.service.SysUserService;
 import cn.hutool.core.lang.UUID;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 
 /**
  * @Description:
@@ -12,6 +17,7 @@ import org.springframework.security.core.Authentication;
  * @Date: 2020/11/30 12:27
  **/
 @Data
+@Component
 public class SecurityManager {
 
     /**
@@ -29,17 +35,28 @@ public class SecurityManager {
      */
     private int expireTime = 60;
 
+    @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private SysUserService sysUserService;
 
     public String loginVerify(Authentication authentication) {
         Authentication authenticate = authenticationManager.authenticate(authentication);
-        LoginUserDetail loginUser = (LoginUserDetail) authenticate.getPrincipal();
+        LoginUserDetail loginUserDetail = (LoginUserDetail) authenticate.getPrincipal();
+        LoginUser loginUser = selectLoginUser(loginUserDetail);
         return null;
     }
 
-    private String createToken(LoginUserDetail loginUserDetail) {
+    private String createToken(LoginUser loginUser) {
         String token = UUID.fastUUID().toString();
-        return null;
+        return token;
+    }
+
+    private LoginUser selectLoginUser(LoginUserDetail loginUserDetail) {
+        Long userId = loginUserDetail.getUserId();
+        SysUserEntity sysUserEntity = sysUserService.selectById(userId);
+        return BeanCopyUtils.copyPropertiesByClass(sysUserEntity, SysLoginUser.class);
     }
 
 

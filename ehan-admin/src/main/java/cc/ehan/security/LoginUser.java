@@ -13,4 +13,10 @@ public interface LoginUser {
     Set<String> getRoles();
 
     Long getId();
+
+    void setToken(String token);
+
+    String getToken();
+
+    Boolean getSuperAdmin();
 }

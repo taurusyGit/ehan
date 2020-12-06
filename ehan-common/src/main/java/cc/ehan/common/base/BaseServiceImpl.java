@@ -11,6 +11,11 @@ package cc.ehan.common.base;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * 基础服务类，所有Service都要继承
  *
@@ -20,7 +25,7 @@ public abstract class BaseServiceImpl<Mapper extends BaseMapper<Entity>, Entity>
     @Autowired
     protected Mapper baseDao;
 
-//    /**
+    //    /**
 //     * 开启分页查询
 //     *
 //     * @param pageQuery
@@ -187,17 +192,17 @@ public abstract class BaseServiceImpl<Mapper extends BaseMapper<Entity>, Entity>
 //        return entity;
 //    }
 //
-//    public Entity selectById(Serializable id) {
-//        return baseDao.selectById(id);
-//    }
-//
-//    public List<Entity> selectByIds(Serializable[] ids) {
-//        return selectByIds(Arrays.asList(ids));
-//    }
-//
-//    public List<Entity> selectByIds(Collection<Serializable> ids) {
-//        return baseDao.selectBatchIds(ids);
-//    }
+    public Entity selectById(Serializable id) {
+        return baseDao.selectById(id);
+    }
+
+    public List<Entity> selectByIds(Serializable[] ids) {
+        return selectByIds(Arrays.asList(ids));
+    }
+
+    public List<Entity> selectByIds(Collection<Serializable> ids) {
+        return baseDao.selectBatchIds(ids);
+    }
 //
 //    @Transactional(rollbackFor = Exception.class)
 //    public boolean deleteById(Serializable id) {
