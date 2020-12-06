@@ -1,4 +1,4 @@
-package cc.ehan.mybatis.datascope;
+package cc.ehan.common.mybatis.datascope;
 
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;

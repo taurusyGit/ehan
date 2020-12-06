@@ -1,6 +1,6 @@
 package cc.ehan.config;
 
-import cc.ehan.mybatis.datascope.ManagerDataScopeInterceptor;
+import cc.ehan.common.mybatis.datascope.ManagerDataScopeInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -21,28 +21,6 @@ public class BaseTest {
     private SysUserMapper sysUserMapper;
 
     @Test
-    public void insertTest() {
-        String[] genders = {"男","女","未知"};
-        Long[] creators = {1L,2L,3L};
-        Random random = new Random();
-
-        int count = 100;
-
-        for (int i = 0; i < count; i++) {
-            int nextInt = random.nextInt(3);
-            SysUserEntity sysUserEntity = new SysUserEntity();
-            sysUserEntity.setAccountName("zhangzhiyong")
-                    .setNickName("AllureLove丶蒙")
-                    .setGender(genders[nextInt])
-                    .setCreator(creators[random.nextInt(3)])
-                    .setSuperAdmin(true);
-
-            sysUserMapper.insert(sysUserEntity);
-        }
-
-    }
-
-    @Test
     public void queryTest() {
         QueryWrapper<SysUserEntity> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda()

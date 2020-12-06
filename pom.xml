@@ -26,9 +26,14 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <springBoot.version>2.4.0</springBoot.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -55,6 +60,27 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>5.2.5</version>
+            </dependency>
+
+            <!-- jwt -->
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>3.11.0</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${springBoot.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -95,25 +121,18 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
             </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
-                <scope>runtime</scope>
-                <optional>true</optional>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
-    <repositories>
-        <repository>
-            <id>public</id>
-            <name>aliyun nexus</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
+    <!--<repositories>-->
+    <!--    <repository>-->
+    <!--        <id>public</id>-->
+    <!--        <name>aliyun nexus</name>-->
+    <!--        <url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
+    <!--        <releases>-->
+    <!--            <enabled>true</enabled>-->
+    <!--        </releases>-->
+    <!--    </repository>-->
+    <!--</repositories>-->
 
 </project>

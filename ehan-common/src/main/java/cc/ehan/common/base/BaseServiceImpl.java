@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package cc.ehan.common.service;
+package cc.ehan.common.base;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
