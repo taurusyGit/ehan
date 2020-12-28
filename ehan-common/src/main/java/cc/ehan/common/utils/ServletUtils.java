@@ -7,6 +7,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * 客户端工具类
@@ -41,8 +42,12 @@ public class ServletUtils {
         return (ServletRequestAttributes) attributes;
     }
 
-    public static void renderJson(HttpServletResponse response, Object data) {
-
+    public static void renderJson(HttpServletResponse response, Object data) throws IOException {
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("application/json");
+        PrintWriter writer = response.getWriter();
+        String responseValue = JsonUtils.toString(data);
+        writer.write(responseValue);
     }
 
     /**

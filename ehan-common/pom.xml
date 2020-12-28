@@ -6,7 +6,6 @@
         <artifactId>ehan</artifactId>
         <groupId>cc.ehan</groupId>
         <version>0.0.1</version>
-        <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,6 +13,16 @@
     <packaging>jar</packaging>
 
     <dependencies>
+
+        <!-- redission -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

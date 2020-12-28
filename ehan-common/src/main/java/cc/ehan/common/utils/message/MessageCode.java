@@ -18,4 +18,6 @@ public interface MessageCode {
     String SYSTEM_ERROR = "500";
 
     String ACCOUNT_NOT_FIND = "accountNotFind";
+
+    String ACCOUNT_AUTHENTICATE_ERROR = ""
 }
